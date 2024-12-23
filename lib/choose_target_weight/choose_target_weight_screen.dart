@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:untitled16666/bmi/bmi_screen.dart';
 import 'package:untitled16666/choose_your_plan/choose_your_plan_screen.dart';
 import '../common/color.dart';
 
@@ -13,6 +14,7 @@ class ChooseTargetWeightScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
+            _textSkip(context),
             _textWhatYourTargetWeight(),
             _textDescWhatYourTargetWeight(),
             _widgetTargetWeightSelection(),
@@ -23,6 +25,37 @@ class ChooseTargetWeightScreen extends StatelessWidget {
     );
   }
 
+  Widget _textSkip(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      margin: const EdgeInsets.only(left: 24, right: 30, top: 30),
+      child: Row(
+        children: [
+          InkWell(
+            onTap: () {
+              Navigator.pop(context); // Navigate back to the previous screen
+            },
+            child: const Icon(Icons.arrow_back), // Back button
+          ),
+          const Spacer(),
+          InkWell(
+            onTap: () {
+              // Handle skip action
+            },
+            child: Text(
+              "SKIP",
+              textAlign: TextAlign.end,
+              style: TextStyle(
+                color: Colors.grey[600],
+                fontSize: 15,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 
   Widget _textWhatYourTargetWeight() {
     return Container(
@@ -137,7 +170,6 @@ class ChooseTargetWeightScreen extends StatelessWidget {
                         // Handle weight unit selection
                       },
                       children: const [
-                        Center(child: Text("Lbs")),
                         Center(child: Text("Kg")),
                       ],
                     ),
@@ -160,7 +192,7 @@ class ChooseTargetWeightScreen extends StatelessWidget {
           // Navigate to ChooseYourPlanScreen when next is clicked
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const ChooseYourPlanScreen()),
+            MaterialPageRoute(builder: (context) => const BMIScreen()),
           );
         },
         style: TextButton.styleFrom(

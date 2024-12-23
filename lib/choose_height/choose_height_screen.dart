@@ -135,8 +135,6 @@ class ChooseHeightScreen extends StatelessWidget {
                       // Handle height unit selection
                     },
                     children: const [
-                      Center(child: Text("Feet", style: TextStyle(fontSize: 28))),
-                      Center(child: Text("Inches", style: TextStyle(fontSize: 28))),
                       Center(child: Text("Centimeters", style: TextStyle(fontSize: 28))),
                     ],
                   ),

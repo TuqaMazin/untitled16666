@@ -1,8 +1,10 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:badges/badges.dart' as badge;
 import 'package:flutter/material.dart';
+import 'package:untitled16666/home/plan_screen.dart';
 
 import '../common/color.dart';
+import 'me_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -25,7 +27,7 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: _bottomNavigationBar(),
+      bottomNavigationBar: _bottomNavigationBar(context),
     );
   }
 
@@ -36,11 +38,11 @@ class HomeScreen extends StatelessWidget {
         children: [
           Expanded(
             child: AutoSizeText(
-              "App Name", // Replace with actual app name or dynamic text
+              "Lose Weight For Women", // Replace with actual app name or dynamic text
               maxLines: 1,
               style: TextStyle(
                 color: Colors.black,
-                fontSize: 18,
+                fontSize: 24,
                 fontWeight: FontWeight.w700,
               ),
             ),
@@ -59,7 +61,7 @@ class HomeScreen extends StatelessWidget {
                 fontSize: 10,
               ),
             ),
-            child: Icon(Icons.notifications), // Example icon
+            child: Icon(Icons.notification_important), // Example icon
           ),
         ],
       ),
@@ -71,44 +73,47 @@ class HomeScreen extends StatelessWidget {
       child: PageView(
         physics: const NeverScrollableScrollPhysics(),
         children: const [
-          Center(child: Text("Plan Screen")), // Placeholder
-          Center(child: Text("Report Screen")), // Placeholder
-          Center(child: Text("Me Screen")), // Placeholder
+          PlanScreen(), // Include the PlanScreen here
+          Center(child: Text("Me Screen")), // Placeholder for now
         ],
       ),
     );
   }
 
-  Widget _bottomNavigationBar() {
-    return  Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
+  Widget _bottomNavigationBar(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
         const Divider(
-        color: AppColor.txtColor999,
-    thickness: 0.1,
-    height: 0,),
-      BottomNavigationBar(
-      unselectedItemColor: AppColor.txtColor666,
-      selectedItemColor: AppColor.primary,
-      items: const [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.list), // Example icon
-          label: 'Plan',
+          color: AppColor.txtColor999,
+          thickness: 0.1,
+          height: 0,
         ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.analytics), // Example icon
-          label: 'Reports',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.person,
-          ), // Example icon
-          label: 'Me',
+        BottomNavigationBar(
+          unselectedItemColor: AppColor.txtColor666,
+          selectedItemColor: AppColor.primary,
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.list), // Example icon
+              label: 'Plan',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person), // Example icon
+              label: 'Me',
+            ),
+          ],
+          onTap: (index) {
+            if (index == 1) {
+              // Navigate to MeScreen
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) =>  const MeScreen()),
+              );
+            }
+            // Handle other taps if needed
+          },
         ),
       ],
-      currentIndex: 0, // Manage current index as needed
-      onTap: (index) {
-        // Handle navigation
-      },
-    )]);
+    );
   }
 }

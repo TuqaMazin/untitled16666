@@ -169,7 +169,6 @@ class ChooseWeightScreen extends StatelessWidget {
                         // Handle weight unit selection
                       },
                       children: const [
-                        Center(child: Text("Lbs")),
                         Center(child: Text("Kg")),
                       ],
                     ),
